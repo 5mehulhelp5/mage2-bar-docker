@@ -7,7 +7,7 @@ echo "Iniciando a Instalação Base do Servidor..."
 sleep 2
 
 if [ "$EUID" -ne 0 ]
-  then echo "Não permitido! Execute este script como root."
+  then echo "Não permitido! Execute este script como root..."
   exit
 fi
 
@@ -17,7 +17,7 @@ apt update && apt upgrade -y
 echo "Configurando Timezone..."
 timedatectl set-timezone America/Sao_Paulo
 
-echo "Instalando Pacotes essenciais..."
+echo "Instalando os Pacotes essenciais..."
 apt install -y \
     curl \
     wget \
@@ -58,3 +58,5 @@ systemctl start fail2ban
 
 echo "Instalação Concluída com Sucesso!"
 echo "O arquivo de Log foi salvo em $LOGFILE"
+echo "Encerrando o Setup Base..."
+sleep 2
