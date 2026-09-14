@@ -21,7 +21,7 @@ O ambiente permite trabalhar com containers, infraestrutura como código, automa
 - MariaDB/MySQL
 - Opensearch
 - Redis
-- IaC (Terraform)
+- IaC (Terraform) *em breve...
 
 
 ---
@@ -33,12 +33,14 @@ O ambiente permite trabalhar com containers, infraestrutura como código, automa
 mage2-bar-docker/
 ├── .github/
 │   └── workflows/
-├── docker/
-│   └── magento2/
+│   
 ├── docs/
+│   └── pt_BR/
+│
 ├── iac/
 │   └── terraform/
-├── magento2/
+│
+├── html/
 ├── scripts/
 └── README.md
 ```
