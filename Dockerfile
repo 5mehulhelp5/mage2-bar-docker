@@ -71,30 +71,30 @@ RUN echo "memory_limit=2G" > /usr/local/etc/php/conf.d/zz-memory-limit.ini \
     && echo "max_execution_time=1800" >> /usr/local/etc/php/conf.d/zz-memory-limit.ini
 
 # Configurar o terminal do container com cores e aliases
-# 1. Cria o grupo e o usuário 'magento' usando o ID 1001 (igual ao seu usuário do sistema)
+# - 1. Cria o grupo 'magentogroup' e o usuário 'magentouser' usando o ID 1001 (igual ao seu usuário do sistema operacional)
 RUN groupadd -g 1001 magentogroup && \
-    useradd -u 1001 -g magentogroup -m -s /bin/bash magento
+    useradd -u 1001 -g magentogroup -m -s /bin/bash magentouser
 
-# 2. Configura o terminal com cores e aliases na home correta
-RUN echo "export TERM=xterm-256color" >> /home/magento/.bashrc \
-    && echo "alias ll='ls -lha --color=auto'" >> /home/magento/.bashrc \
-    && echo "alias ls='ls --color=auto'" >> /home/magento/.bashrc \
-    && echo "alias mag='php bin/magento'" >> /home/magento/.bashrc \
-    && echo "export CLICOLOR=1" >> /home/magento/.bashrc \
-    && echo "PS1='\\[\\033[01;32m\\]\\u@\\h:\\w \\$\\[\\033[00m\\] '" >> /home/magento/.bashrc
+# - 2. Configura o terminal com cores e aliases na home do usuário "magentouser"
+RUN echo "export TERM=xterm-256color" >> /home/magentouser/.bashrc \
+    && echo "alias ll='ls -lha --color=auto'" >> /home/magentouser/.bashrc \
+    && echo "alias ls='ls --color=auto'" >> /home/magentouser/.bashrc \
+    && echo "alias mag='php bin/magento'" >> /home/magentouser/.bashrc \
+    && echo "export CLICOLOR=1" >> /home/magentouser/.bashrc \
+    && echo "PS1='\\[\\033[01;32m\\]\\u@\\h:\\w \\$\\[\\033[00m\\] '" >> /home/magentouser/.bashrc
 
-# 3. Permissão na pasta interna
-RUN chown -R magento:magentogroup /var/www/html
+# - 3. Permissão na pasta interna
+RUN chown -R magentouser:magentogroup /var/www/html
 
-# 4. Ativa o usuário
-USER magento
+# - 4. Ativa o usuário do sitema operacional 'magentouser'
+USER magentouser
 
-# Instalar o Composer
+# - 5. Instalar o Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-# Definir o bash como shell padrão
+# - 6. Definir o bash como shell padrão
 SHELL ["/bin/bash", "-c"]
 
 # ||| Fim ||| 
