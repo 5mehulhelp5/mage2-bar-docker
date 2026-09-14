@@ -79,7 +79,11 @@ RUN groupadd -g 1001 magentogroup && \
 RUN echo "export TERM=xterm-256color" >> /home/magentouser/.bashrc \
     && echo "alias ll='ls -lha --color=auto'" >> /home/magentouser/.bashrc \
     && echo "alias ls='ls --color=auto'" >> /home/magentouser/.bashrc \
+    && echo "alias cls='clear'" >> /home/magentouser/.bashrc \
     && echo "alias mag='php bin/magento'" >> /home/magentouser/.bashrc \
+    && echo "alias magc='php bin/magento cache:clean'" >> /home/magentouser/.bashrc \
+    && echo "alias magf='php bin/magento cache:flush'" >> /home/magentouser/.bashrc \
+    && echo "alias magr='php bin/magento indexer:reindex'" >> /home/magentouser/.bashrc \
     && echo "export CLICOLOR=1" >> /home/magentouser/.bashrc \
     && echo "PS1='\\[\\033[01;32m\\]\\u@\\h:\\w \\$\\[\\033[00m\\] '" >> /home/magentouser/.bashrc
 
