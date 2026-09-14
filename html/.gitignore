@@ -8,3 +8,20 @@
 
 # Chave Privada (SSL private keys)
 docker/magento2/nginx/ssl/*.key
+
+# Arquivos sensiveis
+.env
+html/app/etc/env.php
+.my.cnf
+*.key
+*.pem
+
+# Dados Pesados
+data/
+html/pub/media/*
+
+# Ignorar caches, arquivos gerados e estáticos
+html/vendor/
+html/var/*
+html/generated/*
+html/pub/static/*
